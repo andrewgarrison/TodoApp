@@ -1,25 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Container, Heading, Button } from '@chakra-ui/react';
+import { TodoList } from './components';
+import { getReadableDate } from './utils';
+import { useTodoContext, useModalContext } from './contexts';
+import { FormModal } from './components/FormModal';
 
 function App() {
+  const { todos } = useTodoContext();
+  const { open } = useModalContext();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container maxW='container.md'>
+      <Heading size='lg' my='8'>
+        {getReadableDate(new Date())}
+      </Heading>
+      <Button
+        colorScheme='blue'
+        onClick={() => open(<FormModal formType='Add' />)}
+      >
+        Add Todo
+      </Button>
+      <TodoList todos={todos} />
+    </Container>
   );
 }
 

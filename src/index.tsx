@@ -3,10 +3,18 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { ChakraProvider } from '@chakra-ui/react';
+import { TodoContextProvider, ModalContextProvider } from './contexts';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ChakraProvider>
+      <TodoContextProvider>
+        <ModalContextProvider>
+          <App />
+        </ModalContextProvider>
+      </TodoContextProvider>
+    </ChakraProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
