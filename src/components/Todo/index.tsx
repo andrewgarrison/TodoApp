@@ -24,8 +24,6 @@ export function Todo(props: TodoProps) {
     Other: 'purple',
   };
 
-  console.log(dueDate);
-
   return (
     <Box
       p='4'
